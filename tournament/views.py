@@ -6,13 +6,9 @@ from .models import Tournament
 from .serializers import TournamentListSerializers
 
 
-class TournamentView(viewsets.ModelViewSet):
-
-    serializer_class = TournamentListSerializers
-    queryset = Tournament.objects.all()
+class TournamentView(viewsets.ViewSet):
 
     def list(self, request):
-        queryset = self.get_queryset()
-
-        serializer = self.get_serializer(queryset, many=True)
+        queryset = Tournament.objects.all()
+        serializer = TournamentListSerializers(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
