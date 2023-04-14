@@ -7,8 +7,6 @@ from rest_framework_simplejwt.views import (
 )
 from .views import MyTokenObtainPairView
 
-app_name = 'auth'
-
 
 urlpatterns = [
     path('token/', MyTokenObtainPairView.as_view(),
