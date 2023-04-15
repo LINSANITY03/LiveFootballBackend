@@ -10,5 +10,6 @@ class TournamentView(viewsets.ViewSet):
 
     def list(self, request):
         queryset = Tournament.objects.all()
-        serializer = TournamentListSerializers(queryset, many=True)
+        serializer = TournamentListSerializers(
+            queryset, many=True, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)

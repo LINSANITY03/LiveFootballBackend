@@ -7,4 +7,4 @@ class TournamentListSerializers(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Tournament
-        fields = ('name', 'photo_img')
+        fields = ('id', 'name', 'photo_img')
