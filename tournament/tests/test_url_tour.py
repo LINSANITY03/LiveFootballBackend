@@ -8,5 +8,4 @@ def test_tournament_list(api_client, tournament_factory):
     response = api_client.get(
         reverse('tournament-list')
     )
-    print(response.content)
     assert response.status_code == 200
