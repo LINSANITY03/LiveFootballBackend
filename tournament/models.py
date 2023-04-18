@@ -49,7 +49,8 @@ class Teams(models.Model):
     name = models.CharField(blank=False, null=False, max_length=50)
     photo_img = models.ImageField(
         blank=True, null=True, upload_to='photos/teams')
-    tournament = models.ForeignKey(Tournament, on_delete=models.DO_NOTHING)
+    tournament = models.ForeignKey(
+        Tournament, on_delete=models.DO_NOTHING, related_name='tourn_team')
     created_at = models.DateTimeField(default=datetime.datetime.now)
 
     def __str__(self) -> str:
@@ -62,7 +63,7 @@ class Players(models.Model):
 
     name = models.CharField(blank=False, null=False, max_length=50)
     team = models.ForeignKey(
-        Teams, on_delete=models.DO_NOTHING, related_name='team')
+        Teams, on_delete=models.DO_NOTHING, related_name='team_player')
     photo_img = models.ImageField(
         blank=True, null=True, upload_to=f'photos/{team}')
     jersey_no = models.IntegerField(
