@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.utils.text import slugify
 
 import datetime
 # Create your models here.
@@ -37,9 +38,14 @@ class Tournament(models.Model):
     time_games = models.IntegerField(
         choices=GAMETIME_CHOICES.choices, default=GAMETIME_CHOICES.QUICK)
     created_at = models.DateTimeField(default=datetime.datetime.now)
+    slug = models.SlugField(editable=False)
 
     def __str__(self) -> str:
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 
 class Teams(models.Model):

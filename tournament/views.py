@@ -9,6 +9,8 @@ from .serializers import TournamentListSerializers, TeamPerTournSerializers
 class TournamentView(viewsets.ModelViewSet):
 
     serializer_class = TournamentListSerializers
+    queryset = Tournament.objects.all()
+    lookup_field = 'name'
 
     def list(self, request):
         queryset = Tournament.objects.all()
